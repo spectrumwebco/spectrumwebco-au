@@ -1,0 +1,17 @@
+[install]
+# Use the exact versions specified in package.json
+exact = true
+
+# Install peer dependencies automatically
+peer = true
+
+# Install dev dependencies by default
+dev = true
+
+[test]
+# Use the Jest-compatible test runner
+coverage = true
+
+[run]
+# Set the default environment to development
+env = { NODE_ENV = "development" }
