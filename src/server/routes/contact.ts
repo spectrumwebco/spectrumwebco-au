@@ -1,4 +1,5 @@
 import express from 'express';
+
 import { createContactSubmission, getContactSubmissions, getContactSubmissionById } from '../models/contactSubmission';
 import { getSessionByToken } from '../models/session';
 

@@ -1,12 +1,14 @@
 "use client";
-import React from "react";
 import {
   motion,
   useScroll,
   useTransform,
-  useSpring,
-  MotionValue,
+  useSpring
 } from "motion/react";
+import React from "react";
+
+import type {
+  MotionValue} from "motion/react";
 
 
 

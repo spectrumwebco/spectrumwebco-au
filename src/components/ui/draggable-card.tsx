@@ -1,6 +1,4 @@
 "use client";
-import { cn } from "@/lib/utils";
-import React, { useRef, useState, useEffect } from "react";
 import {
   motion,
   useMotionValue,
@@ -10,6 +8,13 @@ import {
   useVelocity,
   useAnimationControls,
 } from "motion/react";
+import { useRef, useState, useEffect } from "react";
+
+import { cn } from "@/lib/utils";
+
+import type React from "react";
+
+
 
 export const DraggableCardBody = ({
   className,

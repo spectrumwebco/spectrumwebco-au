@@ -1,5 +1,6 @@
-import { type ImageProps } from 'next/image'
 import glob from 'fast-glob'
+
+import type { MDXRemoteProps } from 'next-mdx-remote';
 
 async function loadEntries<T extends { date: string }>(
   directory: string,
@@ -62,4 +63,9 @@ export function loadArticles() {
 
 export function loadCaseStudies() {
   return loadEntries<CaseStudy>('work', 'caseStudy')
+}
+
+export interface MDXPageProps {
+  source: MDXRemoteProps;
+  frontmatter: Record<string, any>;
 }

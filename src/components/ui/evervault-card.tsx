@@ -1,7 +1,7 @@
 "use client";
-import { useMotionValue } from "motion/react";
+import { useMotionValue , useMotionTemplate, motion } from "motion/react";
 import React, { useState, useEffect } from "react";
-import { useMotionTemplate, motion } from "motion/react";
+
 import { cn } from "@/lib/utils";
 
 export const EvervaultCard = ({

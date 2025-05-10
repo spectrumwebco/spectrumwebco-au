@@ -1,8 +1,8 @@
 "use client";
 
+import { motion } from "motion/react";
 import React, { useState, useEffect, useId } from "react";
 
-import { motion } from "motion/react";
 import { cn } from "@/utils/cn";
 
 export interface ContainerTextFlipProps {

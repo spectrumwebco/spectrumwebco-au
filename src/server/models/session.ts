@@ -1,5 +1,6 @@
-import pool from '../config/db';
 import crypto from 'crypto';
+
+import pool from '../config/db';
 
 export interface Session {
   id?: number;

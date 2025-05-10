@@ -1,6 +1,8 @@
 "use client";
+import { useScroll, useTransform, motion } from "motion/react";
 import React, { useRef } from "react";
-import { useScroll, useTransform, motion, MotionValue } from "motion/react";
+
+import type { MotionValue } from "motion/react";
 
 export const ContainerScroll = ({
   titleComponent,

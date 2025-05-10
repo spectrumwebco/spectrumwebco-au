@@ -1,9 +1,11 @@
 "use client";
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import { SparklesCore } from "@/components/ui/sparkles";
-import { AnimatePresence, motion } from "motion/react";
-import { cn } from "@/lib/utils";
 import { IconDotsVertical } from "@tabler/icons-react";
+import { AnimatePresence, motion } from "motion/react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+
+import { SparklesCore } from "@/components/ui/sparkles";
+import { cn } from "@/lib/utils";
+
 
 interface CompareProps {
   firstImage?: string;

@@ -1,5 +1,6 @@
-import { Link } from '../components/Link'
 import clsx from 'clsx'
+
+import { Link } from '../components/Link'
 
 type ButtonProps = {
   invert?: boolean

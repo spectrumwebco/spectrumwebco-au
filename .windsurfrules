@@ -1,0 +1,77 @@
+{
+  "projectType": "nextjs-app",
+  "language": "typescript",
+  "pagesDirectory": "src/app",
+  "componentsDirectory": "src/components",
+  "stylesDirectory": "src/styles",
+  "hooksDirectory": "src/hooks",
+  "libDirectory": "src/lib",
+  "serverDirectory": "src/server",
+  "buildTool": "rsbuild",
+  "scripts": {
+    "dev": "rsbuild dev",
+    "build": "rsbuild build",
+    "start": "serve dist",
+    "lint": "eslint . --ext ts,tsx",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "server": "node --loader ts-node/esm src/server/index.ts",
+    "server:dev": "nodemon --exec node --loader ts-node/esm src/server/index.ts",
+    "db:init": "node --loader ts-node/esm src/server/db/init.ts"
+  },
+  "envFiles": [".env", ".env.example"],
+  "lintConfig": ".eslintrc.json",
+  "prettierConfig": "prettier.config.ts",
+  "postcssConfig": "postcss.config.ts",
+  "tsconfig": "tsconfig.json",
+  "lockFiles": ["bun.lock", "package-lock.json"],
+  "ignore": [
+    "node_modules",
+    ".git",
+    ".idea",
+    ".DS_Store"
+  ],
+  "notes": [
+    "This workspace is a Next.js App Directory project using TypeScript, Tailwind CSS, Storybook, and custom Express server.",
+    "All main marketing pages are in src/app as per Next.js conventions.",
+    "Components are in src/components, with additional logic in hooks/lib/server."
+  ]
+}{
+  "projectType": "nextjs-app",
+  "language": "typescript",
+  "pagesDirectory": "src/app",
+  "componentsDirectory": "src/components",
+  "stylesDirectory": "src/styles",
+  "hooksDirectory": "src/hooks",
+  "libDirectory": "src/lib",
+  "serverDirectory": "src/server",
+  "buildTool": "rsbuild",
+  "scripts": {
+    "dev": "rsbuild dev",
+    "build": "rsbuild build",
+    "start": "serve dist",
+    "lint": "eslint . --ext ts,tsx",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "server": "node --loader ts-node/esm src/server/index.ts",
+    "server:dev": "nodemon --exec node --loader ts-node/esm src/server/index.ts",
+    "db:init": "node --loader ts-node/esm src/server/db/init.ts"
+  },
+  "envFiles": [".env", ".env.example"],
+  "lintConfig": ".eslintrc.json",
+  "prettierConfig": "prettier.config.ts",
+  "postcssConfig": "postcss.config.ts",
+  "tsconfig": "tsconfig.json",
+  "lockFiles": ["bun.lock", "package-lock.json"],
+  "ignore": [
+    "node_modules",
+    ".git",
+    ".idea",
+    ".DS_Store"
+  ],
+  "notes": [
+    "This workspace is a Next.js App Directory project using TypeScript, Tailwind CSS, Storybook, and custom Express server.",
+    "All main marketing pages are in src/app as per Next.js conventions.",
+    "Components are in src/components, with additional logic in hooks/lib/server."
+  ]
+}

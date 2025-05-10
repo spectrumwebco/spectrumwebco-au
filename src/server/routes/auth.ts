@@ -1,6 +1,7 @@
 import express from 'express';
-import { createUser, getUserByEmail, hashPassword } from '../models/user';
+
 import { createSession, deleteSession, getSessionByToken, deleteUserSessions } from '../models/session';
+import { createUser, getUserByEmail, hashPassword } from '../models/user';
 
 const router = express.Router();
 

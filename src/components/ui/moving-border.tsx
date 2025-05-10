@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import {
   motion,
   useAnimationFrame,
@@ -8,7 +7,11 @@ import {
   useTransform,
 } from "motion/react";
 import { useRef } from "react";
+
 import { cn } from "@/lib/utils";
+
+import type React from "react";
+
 
 export function Button({
   borderRadius = "1.75rem",

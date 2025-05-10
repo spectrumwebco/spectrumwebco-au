@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: marketing-site
+  labels:
+    app: marketing-site
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: marketing-site
+  template:
+    metadata:
+      labels:
+        app: marketing-site
+    spec:
+      containers:
+        - name: marketing-site
+          image: ghcr.io/YOUR_ORG/marketing-site:latest
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - secretRef:
+                name: marketing-site-secrets
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: marketing-site
+spec:
+  type: LoadBalancer
+  selector:
+    app: marketing-site
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000

@@ -1,6 +1,9 @@
-import { cn } from "@/lib/utils";
-import React from "react";
 import { motion } from "motion/react";
+
+import { cn } from "@/lib/utils";
+
+import type React from "react";
+
 
 export const BackgroundGradient = ({
   children,

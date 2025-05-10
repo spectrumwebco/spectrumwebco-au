@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+
 import pool from '../config/db';
 
 // Get the directory name of the current module
