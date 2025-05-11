@@ -1,9 +1,6 @@
-'use client'
-
 import clsx from 'clsx'
 import { motion, MotionConfig, useReducedMotion } from 'framer-motion'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { Link, useLocation } from '@remix-run/react'
 import {
   createContext,
   useContext,
@@ -64,7 +61,7 @@ function Header({
     <Container>
       <div className="flex items-center justify-between">
         <Link
-          href="/"
+          to="/"
           aria-label="Home"
           onMouseEnter={() => setLogoHovered(true)}
           onMouseLeave={() => setLogoHovered(false)}
@@ -81,7 +78,7 @@ function Header({
           />
         </Link>
         <div className="flex items-center gap-x-8">
-          <Button href="/contact" invert={invert}>
+          <Button to="/contact" invert={invert}>
             Contact us
           </Button>
           <button
@@ -122,34 +119,45 @@ function NavigationRow({ children }: { children: React.ReactNode }) {
 }
 
 function NavigationItem({
-  href,
+  to,
   children,
 }: {
-  href: string
+  to: string
   children: React.ReactNode
 }) {
+  let location = useLocation()
+  let isActive = location.pathname === to
+
   return (
-    <Link
-      href={href}
-      className="group relative isolate -mx-6 bg-neutral-950 px-6 py-10 even:mt-px sm:mx-0 sm:px-0 sm:py-16 sm:odd:pr-16 sm:even:mt-0 sm:even:border-l sm:even:border-neutral-800 sm:even:pl-16"
-    >
-      {children}
-      <span className="absolute inset-y-0 -z-10 w-screen bg-neutral-900 opacity-0 transition group-odd:right-0 group-even:left-0 group-hover:opacity-100" />
-    </Link>
+    <li>
+      <Link
+        to={to}
+        className={clsx(
+          'relative block px-3 py-2 transition',
+          isActive
+            ? 'text-teal-500 dark:text-teal-400'
+            : 'hover:text-teal-500 dark:hover:text-teal-400',
+        )}
+      >
+        {children}
+        {isActive && (
+          <span className="absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0" />
+        )}
+      </Link>
+    </li>
   )
 }
 
 function Navigation() {
   return (
-    <nav className="mt-px font-display text-5xl font-medium tracking-tight text-white">
-      <NavigationRow>
-        <NavigationItem href="/work">Our Work</NavigationItem>
-        <NavigationItem href="/about">About Us</NavigationItem>
-      </NavigationRow>
-      <NavigationRow>
-        <NavigationItem href="/process">Our Process</NavigationItem>
-        <NavigationItem href="/blog">Blog</NavigationItem>
-      </NavigationRow>
+    <nav className="hidden text-sm font-medium text-neutral-800 dark:text-neutral-200 md:block">
+      <ul className="flex space-x-4">
+        <NavigationItem to="/">Home</NavigationItem>
+        <NavigationItem to="/about-us">About Us</NavigationItem>
+        <NavigationItem to="/case-studies">Case Studies</NavigationItem>
+        {/* <NavigationItem to="/blog">Blog</NavigationItem> */}
+        {/* <NavigationItem to="/contact-us">Contact</NavigationItem> */}
+      </ul>
     </nav>
   )
 }
@@ -161,9 +169,10 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
   let closeRef = useRef<React.ElementRef<'button'>>(null)
   let navRef = useRef<React.ElementRef<'div'>>(null)
   let shouldReduceMotion = useReducedMotion()
+  let location = useLocation()
 
   useEffect(() => {
-    function onClick(event: MouseEvent) {
+    function onClickOutside(event: MouseEvent) {
       if (
         event.target instanceof HTMLElement &&
         event.target.closest('a')?.href === window.location.href
@@ -172,12 +181,25 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
       }
     }
 
-    window.addEventListener('click', onClick)
+    window.addEventListener('click', onClickOutside)
 
     return () => {
-      window.removeEventListener('click', onClick)
+      window.removeEventListener('click', onClickOutside)
     }
   }, [])
+
+  useEffect(() => {
+    if (expanded) {
+      document.body.classList.add('overflow-hidden')
+    } else {
+      document.body.classList.remove('overflow-hidden')
+    }
+  }, [expanded])
+
+  // Close panel on route changes
+  useEffect(() => {
+    setExpanded(false)
+  }, [location.pathname])
 
   return (
     <MotionConfig transition={shouldReduceMotion ? { duration: 0 } : undefined}>
@@ -278,12 +300,12 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
 }
 
 export function RootLayout({ children }: { children: React.ReactNode }) {
-  let pathname = usePathname()
+  let location = useLocation()
   let [logoHovered, setLogoHovered] = useState(false)
 
   return (
     <RootLayoutContext.Provider value={{ logoHovered, setLogoHovered }}>
-      <RootLayoutInner key={pathname}>{children}</RootLayoutInner>
+      <RootLayoutInner key={location.pathname}>{children}</RootLayoutInner>
     </RootLayoutContext.Provider>
   )
 }

@@ -17,7 +17,10 @@
     "test:cov": "vitest run --coverage",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "db:init": "bun src/server/db/init.ts"
+    "db:init": "bun src/server/db/init.ts",
+    "db:test-connection": "bun src/server/scripts/test-db-connection.ts",
+    "db:setup-hypertable": "bun src/server/scripts/setup-hypertable.ts",
+    "db:test-analytics": "bun src/server/scripts/test-analytics.ts"
   },
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {
@@ -71,6 +74,7 @@
     "remark-gfm": "^4.0.0",
     "remark-rehype-wrap": "0.0.3",
     "remark-unwrap-images": "^4.0.0",
+    "sequelize": "6.37.7",
     "serve": "^14.2.1",
     "shiki": "^0.11.1",
     "simplex-noise": "4.0.3",

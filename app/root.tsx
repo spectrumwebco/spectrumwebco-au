@@ -7,18 +7,28 @@ import {
   Scripts,
   ScrollRestoration,
   json,
+  MetaFunction,
 } from "@remix-run/react";
 
-import stylesheet from "@/styles/global.css"; // Assuming your global CSS is here
+import tailwindStylesheet from "@/styles/tailwind.css";
+import { RootLayout } from '@/components/RootLayout';
 
 import type { LinksFunction, LoaderFunctionArgs } from "@remix-run/node";
 
 
 export const links: LinksFunction = () => [
   ...(cssBundle ? [{ rel: "stylesheet", href: cssBundle }]: []),
-  { rel: "stylesheet", href: stylesheet },
-  { rel: "icon", href: "/favicon.ico", type: "image/x-icon" }, // Ensure favicon is in public
+  { rel: "stylesheet", href: tailwindStylesheet },
+  { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
 ];
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Studio - Award winning developer studio based in Denmark" },
+    { name: "charset", content: "utf-8" },
+    { name: "viewport", content: "width=device-width,initial-scale=1" },
+  ];
+};
 
 // Example loader - can be expanded for site-wide data
 export async function loader({ request }: LoaderFunctionArgs) {
@@ -27,15 +37,15 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
 export default function App() {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full bg-neutral-950 text-base antialiased">
       <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body>
-        <Outlet />
+      <body className="flex min-h-full flex-col">
+        <RootLayout>
+          <Outlet />
+        </RootLayout>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

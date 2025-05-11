@@ -9,6 +9,10 @@ import express from 'express';
 // Import routes
 import authRoutes from './routes/auth';
 import contactRoutes from './routes/contact';
+import analyticsRoutes from './routes/analytics';
+
+// Import database connection test
+import { testConnection } from './config/database';
 
 // Load environment variables
 dotenv.config();
@@ -33,11 +37,12 @@ app.use(express.static('public'));
 // Serve build artifacts from 'public/build' (Remix convention for Vite)
 // or 'build' (Remix convention for classic compiler)
 // Rsbuild output might be different, we'll adjust this path as Rsbuild integration progresses
-app.use("/build", express.static("public/build")); 
+app.use("/build", express.static("public/build"));
 
 // API routes (these should come before the Remix handler)
 app.use('/api/auth', authRoutes);
 app.use('/api/contact', contactRoutes);
+app.use('/api/analytics', analyticsRoutes);
 app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'ok', message: 'Server is running' });
 });
@@ -58,7 +63,7 @@ if (process.env.NODE_ENV === 'development') {
         // Dynamically import the server build for HMR
         // The path might change depending on `remix.config.js` serverBuildPath
         // or Rsbuild's output for the server bundle.
-         
+
         const build = await import("../../build/index.js?t=" + Date.now());
         return build;
       },
@@ -83,12 +88,20 @@ if (process.env.NODE_ENV === 'development') {
 // For local development, `bun src/server/index.ts` or `npm run dev` will trigger this.
 // Vercel will import `app` and handle the serving.
 if (process.env.NODE_ENV !== 'production' || process.env.LOCAL_DEV === 'true') {
-  app.listen(PORT, () => {
-    console.log(`Express server listening on port ${PORT}`);
-    if (process.env.NODE_ENV === 'development') {
-      console.log(`Remix app running at http://localhost:${PORT}/`);
-    }
-  });
+  // Test database connection before starting the server
+  testConnection()
+    .then(() => {
+      app.listen(PORT, () => {
+        console.log(`Express server listening on port ${PORT}`);
+        if (process.env.NODE_ENV === 'development') {
+          console.log(`Remix app running at http://localhost:${PORT}/`);
+        }
+      });
+    })
+    .catch(err => {
+      console.error('Failed to connect to the database. Server not started:', err);
+      process.exit(1);
+    });
 }
 
 export default app;

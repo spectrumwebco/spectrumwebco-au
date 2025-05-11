@@ -1,12 +1,11 @@
 import clsx from 'clsx'
-
-import { Link } from '../components/Link'
+import { Link as RemixLink } from '@remix-run/react';
 
 type ButtonProps = {
   invert?: boolean
 } & (
-  | React.ComponentPropsWithoutRef<typeof Link>
-  | (React.ComponentPropsWithoutRef<'button'> & { href?: undefined })
+  (Omit<React.ComponentPropsWithoutRef<typeof RemixLink>, 'href'> & { to: string; href?: undefined }) |
+  (React.ComponentPropsWithoutRef<'button'> & { to?: undefined; href?: undefined })
 )
 
 export function Button({
@@ -25,17 +24,19 @@ export function Button({
 
   let inner = <span className="relative top-px">{children}</span>
 
-  if (typeof props.href === 'undefined') {
+  if (props.to) {
+    const { to, ...linkProps } = props as any;
     return (
-      <button className={className} {...props}>
+      <RemixLink to={to} className={className} {...linkProps}>
         {inner}
-      </button>
-    )
+      </RemixLink>
+    );
   }
 
+  const { to, href, ...buttonProps } = props as any;
   return (
-    <Link className={className} {...props}>
+    <button className={className} {...buttonProps}>
       {inner}
-    </Link>
+    </button>
   )
 }
