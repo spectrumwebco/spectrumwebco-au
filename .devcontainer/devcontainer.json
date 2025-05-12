@@ -1,0 +1,53 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+{
+	"name": "Ubuntu",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/base:jammy",
+	"features": {
+		"ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {},
+		"ghcr.io/stuartleeks/dev-container-features/add-host:1": {},
+		"ghcr.io/kvokka/features/aicommit2:1": {},
+		"ghcr.io/wxw-matt/devcontainer-features/command_runner:0": {},
+		"ghcr.io/itsmechlark/features/act:1": {},
+		"ghcr.io/cirolosapio/devcontainers-features/alpine-bun:0": {},
+		"ghcr.io/cirolosapio/devcontainers-features/alpine-git:0": {},
+		"ghcr.io/cirolosapio/devcontainers-features/alpine-node:0": {},
+		"ghcr.io/cirolosapio/devcontainers-features/alpine-openssh:0": {},
+		"ghcr.io/cirolosapio/devcontainers-features/alpine-pgsql-client:0": {},
+		"ghcr.io/cirolosapio/devcontainers-features/alpine-php-pgsql:0": {},
+		"ghcr.io/cirolosapio/devcontainers-features/alpine-php-redis:0": {},
+		"ghcr.io/audacioustux/devcontainers/argo:1": {},
+		"ghcr.io/hspaans/devcontainer-features/ansible-lint:1": {},
+		"ghcr.io/skriptfabrik/devcontainer-features/mailpit:1": {},
+		"ghcr.io/tcaky/devcontainer-features/alpine-powershell:0": {},
+		"ghcr.io/nikiforovall/devcontainer-features/dotnet-csharpier:1": {},
+		"ghcr.io/devcontainers-extra/features/ansible:2": {},
+		"ghcr.io/devcontainers-extra/features/apt-get-packages:1": {},
+		"ghcr.io/devcontainers-extra/features/apt-packages:1": {},
+		"ghcr.io/devcontainers-extra/features/argo-cd:1": {},
+		"ghcr.io/devcontainers-extra/features/argo-workflows:1": {},
+		"ghcr.io/grafana/devcontainer-features/k6:1": {}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"Augment.vscode-augment"
+			]
+		}
+	}
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "uname -a",
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}

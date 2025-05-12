@@ -19,19 +19,4 @@ const config: AppConfig = {
   // serverDependenciesToBundle: "all",
 };
 
-export default {
-  ignoredRouteFiles: ["**/.*"],
-  // appDirectory: "app",
-  // assetsBuildDirectory: "public/build",
-  // publicPath: "/build/",
-  // serverBuildPath: "build/index.js",
-  // serverModuleFormat: "esm", // Or "cjs"
-  tailwind: true, // Enable Tailwind CSS processing
-  postcss: true, // Enable PostCSS processing
-  watchPaths: ['./tailwind.config.ts'], // Watch tailwind config for changes
-  future: {
-    // v3_fetcherPersist: true, // Example of future flags
-    // v3_relativeSplatPath: true,
-    // v3_throwAbortReason: true,
-  },
-};
+export default config;

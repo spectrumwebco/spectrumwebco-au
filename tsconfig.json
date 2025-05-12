@@ -15,13 +15,13 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["./app/*"],
-      "@/*": ["./src/*"]
+      "@/*": ["./*"]
     },
     "noEmit": true,
     "types": [
       "@remix-run/node",
-      "vite/client", 
-      "vitest/globals" 
+      "vite/client",
+      "vitest/globals"
     ]
   },
   "include": ["**/*.ts", "**/*.tsx"],

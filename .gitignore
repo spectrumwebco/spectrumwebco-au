@@ -83,3 +83,5 @@ coverage
 
 # Optional: TypeScript cache
 *.tsbuildinfo
+
+.fake
